@@ -7,13 +7,13 @@ var store = new DevExpress.data.CustomStore({
         return sendRequest(apiurl + "/equipment");
     },
     insert: function(values) {
-        values.lampiran = $path;
+        // values.lampiran = $path;
         return sendRequest(apiurl + "/equipment", "POST", values);
     },
     update: function(key, values) {
-        if($path!=""){
-            values.lampiran = $path;
-        }
+        // if($path!=""){
+        //     values.lampiran = $path;
+        // }
         return sendRequest(apiurl + "/equipment/"+key, "PUT", values);
     },
     remove: function(key) {
@@ -29,6 +29,7 @@ function moveEditColumnToLeft(dataGrid) {
 }
 
 date = new Date();
+let isClone = false; let original = null;
 
 // attribute
 var dataGrid = $("#grid-equipment").dxDataGrid({    
@@ -63,16 +64,7 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
         mode: "virtual"
     },
     columns: [
-        // {
-        //     caption: '#',
-        //     formItem: { 
-        //         visible: false
-        //     },
-        //     width: 40,
-        //     cellTemplate: function(container, options) {
-        //         container.text(options.rowIndex +1);
-        //     }
-        // },
+        
         { 
             dataField: "site",
             caption: "Site",
