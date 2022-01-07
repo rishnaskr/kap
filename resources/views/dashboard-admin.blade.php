@@ -70,7 +70,7 @@
 		<div class="panel panel-inverse">
 			<!-- begin panel-heading -->
 			<div class="panel-heading">
-				<h4 class="panel-title">Detail Data Equipment </h4>
+				<h4 class="panel-title">Detail Data Equipment : <span id="param-title"></span> </h4>
 				<div class="panel-heading-btn">
 					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 				

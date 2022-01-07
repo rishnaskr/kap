@@ -19,12 +19,15 @@ $.each(category,function(x,y){
 
 $('.btn-detail-1').click(function(){
     detailsite(1);
+    $('#param-title').text('Last Month');
 })
 $('.btn-detail-2').click(function(){
     detailsite(2);
+    $('#param-title').text('This Month');
 })
 $('.btn-detail-3').click(function(){
     detailsite(3);
+    $('#param-title').text('Next Month');
 })
 
 //SITE Detail
