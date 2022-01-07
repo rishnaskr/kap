@@ -38,11 +38,21 @@ function detailsite(vparam){
             height: 440,
             rowHeaderLayout: 'tree',
             showBorders: true,
-            fieldChooser: {
-            enabled: false,
-            },
+            // fieldPanel: {
+                // showColumnFields: true,
+                // showDataFields: true,
+                // showFilterFields: true,
+                // showRowFields: true,
+                // allwFieldDragging: true,
+                // visible: false
+            // },
             export: {
-            enabled: true,
+                enabled: true,
+                fileName: "DxExport"
+            },
+            fieldChooser: {
+                enabled: true,
+                height: 400
             },
             dataSource: {
             fields: [{
@@ -51,12 +61,6 @@ function detailsite(vparam){
                 area: 'row',
                 expanded: true,
             }, 
-            // {
-            //     caption: 'category',
-            //     dataField: 'category',
-            //     area: 'row',
-            //     width: 150,
-            // }, 
             {
                 dataField: 'category',
                 dataType: 'category',
@@ -71,20 +75,6 @@ function detailsite(vparam){
                 // format: 'currency',
             }],
             store: items,
-            },
-            onExporting(e) {
-            const workbook = new ExcelJS.Workbook();
-            const worksheet = workbook.addWorksheet('Detail Equipment');
-
-            DevExpress.excelExporter.exportPivotGrid({
-                component: e.component,
-                worksheet,
-            }).then(() => {
-                workbook.xlsx.writeBuffer().then((buffer) => {
-                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Detail Equipment.xlsx');
-                });
-            });
-            e.cancel = true;
             },
         });
 
