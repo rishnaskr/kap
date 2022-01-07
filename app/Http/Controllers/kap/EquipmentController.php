@@ -219,14 +219,14 @@ class EquipmentController extends Controller
                 ->whereYear('period_end',$monthyear)
                 // ->whereYear('period_end',Carbon::now()->format('Y')-1)
                 // ->where('category',$category)
-                ->groupBy('no_kap')
+                // ->groupBy('no_kap')
                 ->get();
             } else if($param == 2) {
                 $data = Equipments::selectRaw('*, case when no_kap is not null then 1 else 0 end as jml')
                 ->whereMonth('period_end',Carbon::now())
                 // ->where('category',$category)
                 ->whereYear('period_end',Carbon::now()->format('Y'))
-                ->groupBy('no_kap')
+                // ->groupBy('no_kap')
                 ->get();
             } else if($param == 3){
 
@@ -244,7 +244,7 @@ class EquipmentController extends Controller
                 ->whereYear('period_end',Carbon::now()->format('Y'))
                 ->whereYear('period_end',$monthyearadd)
                 // ->where('category',$category)
-                ->groupBy('no_kap')
+                // ->groupBy('no_kap')
                 ->get();
             }
             
