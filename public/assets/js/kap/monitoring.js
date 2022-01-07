@@ -305,6 +305,7 @@ var dataGrid = $("#grid-monitoring").dxDataGrid({
                     { 
                         dataField: "currency",
                         caption: "currency",
+                        width: 50,
                     },
                     { 
                         dataField: "amount",

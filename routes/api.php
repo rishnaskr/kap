@@ -34,3 +34,5 @@ Route::apiResource('monitoring','kap\MonitoringController');
 
 Route::post('getkap','kap\MonitoringController@getkap');
 Route::post('getkapmonitoring','kap\EquipmentController@getkapmonitoring');
+
+Route::post('countexpiredequipment','kap\EquipmentController@countexpiredequipment');
