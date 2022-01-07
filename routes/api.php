@@ -36,3 +36,4 @@ Route::post('getkap','kap\MonitoringController@getkap');
 Route::post('getkapmonitoring','kap\EquipmentController@getkapmonitoring');
 
 Route::post('countexpiredequipment','kap\EquipmentController@countexpiredequipment');
+Route::post('expiredsite','kap\EquipmentController@expiredsite');
