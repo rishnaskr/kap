@@ -46,6 +46,11 @@ function detailsite(vparam){
                 // allwFieldDragging: true,
                 // visible: false
             // },
+            onCellClick: function(e) {
+                if(e.area == "data") {
+                    alert('click');
+                }
+            },
             export: {
                 enabled: true,
                 fileName: "DxExport"
@@ -54,26 +59,31 @@ function detailsite(vparam){
                 enabled: true,
                 height: 400
             },
+            onCellPrepared: function(e) {
+                if(typeof e.cell.rowPath !== 'undefined') {
+                    e.cellElement.css('color','blue');
+                }
+            },
             dataSource: {
-            fields: [{
-                caption: 'site',
-                dataField: 'site',
-                area: 'row',
-                expanded: true,
-            }, 
-            {
-                dataField: 'category',
-                dataType: 'category',
-                area: 'column',
-                // expanded: true,
-            }, {
-                caption: 'jumlah',
-                dataField: 'jml',
-                dataType: 'number',
-                area: 'data',
-                summaryType: 'sum',
-                // format: 'currency',
-            }],
+                fields: [{
+                    caption: 'site',
+                    dataField: 'site',
+                    area: 'row',
+                    expanded: true,
+                }, 
+                {
+                    dataField: 'category',
+                    dataType: 'category',
+                    area: 'column',
+                    // expanded: true,
+                }, {
+                    caption: 'jumlah',
+                    dataField: 'jml',
+                    dataType: 'number',
+                    area: 'data',
+                    summaryType: 'sum',
+                    // format: 'currency',
+                }],
             store: items,
             },
         });
