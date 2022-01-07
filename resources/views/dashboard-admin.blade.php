@@ -81,6 +81,7 @@
 			<!-- end panel-heading -->
 			<!-- begin panel-body -->
 			<div class="panel-body">
+				<div id="site-popup"></div>
                 <div id="grid-detailequipment" style="width:100%;"></div>
 			</div>
 			<!-- end panel-body -->
@@ -92,6 +93,6 @@
 @endsection
 
 @push('scripts')
-<script src="/assets/js/kap/dashboard.js?n=2"></script>
+<script src="/assets/js/kap/dashboard.js?n=3"></script>
 
 @endpush

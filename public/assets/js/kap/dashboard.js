@@ -32,23 +32,28 @@ $('.btn-detail-3').click(function(){
 
 //SITE Detail
 function detailsite(vparam){
+    
+    
+    
     $.post(apiurl+'/expiredsite',{param:vparam},function(items){
-
+        let drillDownDataSource = {};
+        
         $('#grid-detailequipment').dxPivotGrid({
             height: 440,
             rowHeaderLayout: 'tree',
             showBorders: true,
-            // fieldPanel: {
-                // showColumnFields: true,
-                // showDataFields: true,
-                // showFilterFields: true,
-                // showRowFields: true,
-                // allwFieldDragging: true,
-                // visible: false
-            // },
+
             onCellClick: function(e) {
                 if(e.area == "data") {
-                    alert('click');
+                    const pivotGridDataSource = e.component.getDataSource();
+                    const rowPathLength = e.cell.rowPath.length;
+                    const rowPathName = e.cell.rowPath[rowPathLength - 1];
+                    const popupTitle = `${rowPathName || 'Total'} : Drill Down Data`;
+
+                    drillDownDataSource = pivotGridDataSource.createDrillDownDataSource(e.cell);
+                    salesPopup.option('title', popupTitle);
+                    salesPopup.show();
+
                 }
             },
             export: {
@@ -75,19 +80,92 @@ function detailsite(vparam){
                     dataField: 'category',
                     dataType: 'category',
                     area: 'column',
-                    // expanded: true,
                 }, {
                     caption: 'jumlah',
                     dataField: 'jml',
                     dataType: 'number',
                     area: 'data',
                     summaryType: 'sum',
-                    // format: 'currency',
                 }],
             store: items,
             },
         });
 
+        const salesPopup = $('#site-popup').dxPopup({
+            width: 1200,
+            height: 700,
+            contentTemplate(contentElement) {
+              $('<div />')
+                .addClass('drill-down')
+                .dxDataGrid({
+                  width: 1150,
+                  height: 620,
+                  scrolling: {
+                    mode: "virtual"
+                  },
+                  allowColumnReordering: true,
+                    allowColumnResizing: true,
+                    columnsAutoWidth: true,
+                    columnMinWidth: 130,
+                    columnHidingEnabled: false,
+                    wordWrapEnabled: true,
+                    showBorders: true,
+                    rowAlternationEnabled: true,
+                    filterRow: { visible: true },
+                    // filterPanel: { visible: true },
+                    headerFilter: { visible: true },
+                    pager: {
+                        visible: true,
+                        showInfo: true,
+                    },
+                  columns: [
+                        'site',
+                        'subcontractor',
+                        'unit_no',
+                        'type',
+                        'description',
+                        'hire_type',
+                        'period_start',
+                        'period_end',
+                        'currency',
+                        { 
+                            dataField: "amount",
+                            caption: "amount",
+                            dataType: "number",
+                            format: "fixedPoint",
+                            editorOptions: {
+                                format: "fixedPoint"
+                            }
+                        },
+                        'uom',
+                        'remarks',
+                        'status',
+                        'no_kap',
+                        'category',
+                    ],
+                  export : {
+                    enabled: true,
+                    fileName: 'Detail Data'
+                  },
+                })
+                .appendTo(contentElement);
+            },
+            onShowing() {
+              $('.drill-down')
+                .dxDataGrid('instance')
+                .option('dataSource', drillDownDataSource);
+            },
+            onShown() {
+              $('.drill-down')
+                .dxDataGrid('instance')
+                .updateDimensions();
+            },
+          }).dxPopup('instance');
+
     })  
+
+
+    
+
 }
 

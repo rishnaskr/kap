@@ -214,7 +214,7 @@ class EquipmentController extends Controller
             }
 
             if($param == 1) {
-                $data = Equipments::selectRaw('id,site,category,period_start,period_end, case when no_kap is not null then 1 else 0 end as jml')
+                $data = Equipments::selectRaw('*, case when no_kap is not null then 1 else 0 end as jml')
                 ->whereMonth('period_end',Carbon::now()->subMonth()->format('m'))
                 ->whereYear('period_end',$monthyear)
                 // ->whereYear('period_end',Carbon::now()->format('Y')-1)
@@ -222,7 +222,7 @@ class EquipmentController extends Controller
                 ->groupBy('no_kap')
                 ->get();
             } else if($param == 2) {
-                $data = Equipments::selectRaw('id,site,category,period_start,period_end, case when no_kap is not null then 1 else 0 end as jml')
+                $data = Equipments::selectRaw('*, case when no_kap is not null then 1 else 0 end as jml')
                 ->whereMonth('period_end',Carbon::now())
                 // ->where('category',$category)
                 ->whereYear('period_end',Carbon::now()->format('Y'))
@@ -239,7 +239,7 @@ class EquipmentController extends Controller
                     $monthyearadd = Carbon::now()->format('Y');
                 }
 
-                $data = Equipments::selectRaw('id,site,category,period_start,period_end, case when no_kap is not null then 1 else 0 end as jml')
+                $data = Equipments::selectRaw('*, case when no_kap is not null then 1 else 0 end as jml')
                 ->whereMonth('period_end',Carbon::now()->addMonth()->format('m'))
                 ->whereYear('period_end',Carbon::now()->format('Y'))
                 ->whereYear('period_end',$monthyearadd)
