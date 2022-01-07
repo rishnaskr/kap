@@ -118,6 +118,10 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
         { 
             dataField: "currency",
             caption: "currency",
+        },
+        { 
+            dataField: "amount",
+            caption: "amount",
             dataType: "number",
             format: "fixedPoint",
             editorOptions: {
