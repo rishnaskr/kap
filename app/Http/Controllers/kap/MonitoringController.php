@@ -4,6 +4,9 @@ namespace App\Http\Controllers\kap;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Carbon;
+
 
 use App\Monitorings;
 use App\Equipments;
@@ -37,6 +40,8 @@ class MonitoringController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+
         $date1 = $request->bva_date;
         $date2 = $request->site_date;
         $date3 = $request->scm_date;
@@ -71,6 +76,8 @@ class MonitoringController extends Controller
         if($date7) {
             $requestData['last_update'] = $fixed7;
         }
+        $requestData['createdby'] = $user->username;
+
         
         try {
             Monitorings::create($requestData);
@@ -103,6 +110,8 @@ class MonitoringController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
+
         $date1 = $request->bva_date;
         $date2 = $request->site_date;
         $date3 = $request->scm_date;
@@ -137,6 +146,9 @@ class MonitoringController extends Controller
         if($date7) {
             $requestData['last_update'] = $fixed7;
         }
+        $requestData['updatedby'] = $user->username;
+        $requestData['last_update'] = Carbon::now();
+
         
         try {
             $data = Monitorings::findOrFail($id);

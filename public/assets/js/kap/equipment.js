@@ -84,6 +84,12 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
             validationRules: [{ type: "required" }]
         },
         { 
+            dataField: "no_kap",
+            caption: "no_kap",
+            width: 150,
+
+        },
+        { 
             dataField: "unit_no",
             caption: "Unit No",
         },
@@ -141,16 +147,39 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
             caption: "status",
         },
         { 
-            dataField: "no_kap",
-            caption: "no_kap",
-            width: 150,
-
-        },
-        { 
             dataField: "category",
             caption: "category",
             width: 150,
-
+            editorType: "dxSelectBox",
+            lookup: {
+                dataSource: listCategory,  
+                valueExpr: 'name',
+                displayExpr: 'name',
+            },
+        },
+        { 
+            dataField: "created_at",
+            editorType: "dxDateBox",
+            dataType:"date", format:"dd-MM-yyyy",displayFormat: "dd-MM-yyyy",
+            editorOptions: {
+                displayFormat: "yyyy-MM-dd",
+            }
+        },
+        { 
+            dataField: "updated_at",
+            editorType: "dxDateBox",
+            dataType:"date", format:"dd-MM-yyyy",displayFormat: "dd-MM-yyyy",
+            editorOptions: {
+                displayFormat: "yyyy-MM-dd",
+            }
+        },
+        { 
+            dataField: "createdby",
+            caption: "createdby",
+        },
+        { 
+            dataField: "updatedby",
+            caption: "updatedby",
         },
         // {
         //     dataField: "lampiran",

@@ -90,6 +90,8 @@
         }),
         sort: "nama_kegiatan"
     }
+
+    listCategory = [{id:0,name:"Goods&Equipments"},{id:1,name:"Services"},{id:2,name:"Others"}];
     
     
     //log

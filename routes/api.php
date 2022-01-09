@@ -29,8 +29,8 @@ Route::get('list-rt','API\ListController@listRT');
 //cetak PDF
 Route::get('/cetak-kegiatan/{bulan}/{tahun}/{rt}','KegiatanLaporanController@cetakkegiatan')->name('cetak-kegiatan');
 
-Route::apiResource('equipment','kap\EquipmentController');
-Route::apiResource('monitoring','kap\MonitoringController');
+// Route::apiResource('equipment','kap\EquipmentController');
+// Route::apiResource('monitoring','kap\MonitoringController');
 
 Route::post('getkap','kap\MonitoringController@getkap');
 Route::post('getkapmonitoring','kap\EquipmentController@getkapmonitoring');

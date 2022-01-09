@@ -199,10 +199,24 @@ var dataGrid = $("#grid-monitoring").dxDataGrid({
             dataField: "ellipse_status",
             caption: "ellipse status",
         },
+        // { 
+        //     dataField: "category",
+        //     caption: "category",
+        //     width: 100,
+        //     editorType: "dxSelectBox",
+        //     lookup: {
+        //         dataSource: listCategory,  
+        //         valueExpr: 'name',
+        //         displayExpr: 'name',
+        //     },
+        // },
         { 
-            dataField: "category",
-            caption: "category",
-            width: 100,
+            dataField: "created_at",
+            editorType: "dxDateBox",
+            dataType:"date", format:"dd-MM-yyyy",displayFormat: "dd-MM-yyyy",
+            editorOptions: {
+                displayFormat: "yyyy-MM-dd",
+            }
         },
         { 
             dataField: "last_update",
@@ -356,6 +370,18 @@ var dataGrid = $("#grid-monitoring").dxDataGrid({
     },
     onEditorPreparing: function(e) {
         // datagrid.getEditor("keterangan").option("value", 'some new text'); 
+        if (e.parentType === 'dataRow' && e.dataField === 'createdby') {
+            e.editorOptions.readOnly = true;
+        }
+        if (e.parentType === 'dataRow' && e.dataField === 'updatedby') {
+            e.editorOptions.readOnly = true;
+        }
+        if (e.parentType === 'dataRow' && e.dataField === 'last_update') {
+            e.editorOptions.readOnly = true;
+        }
+        if (e.parentType === 'dataRow' && e.dataField === 'created_at') {
+            e.editorOptions.readOnly = true;
+        }
     },
     onToolbarPreparing: function(e) {
         dataGrid = e.component;

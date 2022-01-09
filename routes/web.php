@@ -36,8 +36,9 @@ Route::group( ['as' => 'kap.','middleware' => ['auth']], function() {
     Route::get('/master-user','masteruser\LoginUserController@show')->name('masteruser');
 
     //api
-    // Route::apiResource('/api/equipment','kap\EquipmentController');
-    // Route::apiResource('/api/monitoring','kap\MonitoringController');
+
+    Route::apiResource('/api/equipment','kap\EquipmentController');
+    Route::apiResource('/api/monitoring','kap\MonitoringController');
     
 });
 

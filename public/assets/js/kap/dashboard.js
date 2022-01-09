@@ -121,32 +121,141 @@ function detailsite(vparam){
                   columns: [
                         'site',
                         'subcontractor',
-                        'unit_no',
-                        'type',
-                        'description',
-                        'hire_type',
-                        'period_start',
-                        'period_end',
-                        'currency',
-                        { 
-                            dataField: "amount",
-                            caption: "amount",
-                            dataType: "number",
-                            format: "fixedPoint",
-                            editorOptions: {
-                                format: "fixedPoint"
-                            }
-                        },
-                        'uom',
-                        'remarks',
-                        'status',
+                        // 'unit_no',
+                        // 'type',
+                        // 'description',
+                        // 'hire_type',
+                        // 'period_start',
+                        // 'period_end',
+                        // 'currency',
+                        // { 
+                        //     dataField: "amount",
+                        //     caption: "amount",
+                        //     dataType: "number",
+                        //     format: "fixedPoint",
+                        //     editorOptions: {
+                        //         format: "fixedPoint"
+                        //     }
+                        // },
+                        // 'uom',
+                        // 'remarks',
+                        // 'status',
                         'no_kap',
-                        'category',
+                        // 'category',
                     ],
                   export : {
                     enabled: true,
                     fileName: 'Detail Data'
                   },
+                  masterDetail: {
+                    enabled: true,
+                    template(container, options) {
+                      const lastdata = options.data;
+              
+                      $('<div>')
+                        .addClass('master-detail-caption')
+                        .text(`No KAP ${lastdata.no_kap} : `)
+                        .appendTo(container);
+              
+                      $('<div>')
+                        .dxDataGrid({
+                          columnAutoWidth: true,
+                          showBorders: true,
+                          rowAlternationEnabled: true,
+                          dataSource: new DevExpress.data.DataSource({
+                              store: new DevExpress.data.CustomStore({
+                                  key: 'no_kap',
+                                  //   data: items.data,
+                                  load: function() {
+                                      return sendRequest(apiurl + "/getkap","POST",{nokap:lastdata.no_kap});
+                                    }
+                                }),
+                                // filter: ['no_kap', '=', lastdata.no_kap],
+                            }),
+                            columns: [
+                                { 
+                                    dataField: "site",
+                                    caption: "Site",
+                                },
+                                { 
+                                    dataField: "subcontractor",
+                                    caption: "Sub Contractor",
+                                },
+                                { 
+                                    dataField: "no_kap",
+                                    caption: "no_kap",
+                                    // width: 150,
+                        
+                                },
+                                { 
+                                    dataField: "unit_no",
+                                    caption: "Unit No",
+                                },
+                                { 
+                                    dataField: "type",
+                                    caption: "Type",
+                                },
+                                { 
+                                    dataField: "description",
+                                    caption: "Description",
+                                },
+                                { 
+                                    dataField: "hire_type",
+                                    caption: "Hire Type",
+                                },
+                                { 
+                                    dataField: "period_start",
+                                    editorType: "dxDateBox",
+                                    dataType:"date", format:"dd-MM-yyyy",displayFormat: "dd-MM-yyyy",
+                                    editorOptions: {
+                                        displayFormat: "yyyy-MM-dd",
+                                    }
+                                },
+                                { 
+                                    dataField: "period_end",
+                                    editorType: "dxDateBox",
+                                    dataType:"date", format:"dd-MM-yyyy",displayFormat: "dd-MM-yyyy",
+                                    editorOptions: {
+                                        displayFormat: "yyyy-MM-dd",
+                                    }
+                                },
+                                { 
+                                    dataField: "currency",
+                                    caption: "currency",
+                                    width: 50,
+                                },
+                                { 
+                                    dataField: "amount",
+                                    caption: "amount",
+                                    dataType: "number",
+                                    format: "fixedPoint",
+                                    editorOptions: {
+                                        format: "fixedPoint"
+                                    }
+                                },
+                                { 
+                                    dataField: "uom",
+                                    caption: "uom",
+                                },
+                                { 
+                                    dataField: "remarks",
+                                    caption: "remarks",
+                                },
+                                { 
+                                    dataField: "status",
+                                    caption: "status",
+                                },
+                                
+                                { 
+                                    dataField: "category",
+                                    caption: "category",
+                                    width: 150,
+                        
+                                },
+                            ],
+                            }).appendTo(container);
+                        },
+                    },
                 })
                 .appendTo(contentElement);
             },
