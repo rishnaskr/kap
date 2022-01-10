@@ -64,11 +64,15 @@ var dataGrid = $("#grid-monitoring").dxDataGrid({
     scrolling: {
         mode: "virtual"
     },
+    sorting: {
+        mode: 'multiple',
+    },
     columns: [
         { 
             dataField: "site",
             caption: "Site",
             width: 40,
+            sortOrder: 'asc',
             // visible: (role=="admin")?true:false,
             validationRules: [{ type: "required" }]
         },
@@ -76,6 +80,7 @@ var dataGrid = $("#grid-monitoring").dxDataGrid({
             dataField: "vendor_name",
             caption: "Vendor Name",
             width: 200,
+            sortOrder: 'asc',
             // editorType: "dxSelectBox",
             // lookup: {
             //     dataSource: listKegiatan,  
@@ -87,6 +92,7 @@ var dataGrid = $("#grid-monitoring").dxDataGrid({
         { 
             dataField: "no_kap",
             caption: "No Kap",
+            sortOrder: 'asc',
             width: 200,
 
         },

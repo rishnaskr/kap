@@ -29,8 +29,18 @@ function moveEditColumnToLeft(dataGrid) {
 }
 
 date = new Date();
-let isClone = false; let original = null;
-
+// let isClone = false; let original = null;
+$.getJSON('/api/equipment',function(items){
+    let maxID = items.data.length;
+    let equipment = items.data;
+    
+    // console.log(itemdata.length)
+    // maxID =  [];
+    // $.each(items.data,function(x,y){
+    //     let maxID = y.id;
+    //     // console.log(y.id.length)
+    //     // return maxID;
+    // })
 // attribute
 var dataGrid = $("#grid-equipment").dxDataGrid({    
     dataSource: store,
@@ -45,12 +55,13 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
     filterRow: { visible: true },
     filterPanel: { visible: true },
     headerFilter: { visible: true },
+    keyExpr: 'id',
     selection: {
         mode: "multiple"
     },
     editing: {
         useIcons:true,
-        mode: "cell",
+        mode: "row",
         allowAdding: (role == "admin")?true:false,
         allowUpdating: (role == "admin")?true:false,
         allowDeleting: (role == "admin")?true:false,
@@ -63,18 +74,46 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
     scrolling: {
         mode: "virtual"
     },
+    sorting: {
+        mode: 'multiple',
+    },
     columns: [
-        
+        {
+            type: 'buttons',
+            width: 110,
+            buttons: ['edit', 'delete', {
+              hint: 'Clone',
+              icon: 'copy',
+              visible(e) {
+                return !e.row.isEditing;
+              },
+              disabled(e) {
+                // return isChief(e.row.data.Position);
+              },
+              onClick(e) {
+                const clonedItem = $.extend({}, e.row.data, { id: maxID += 1 });
+                // console.log(maxID);
+    
+                equipment.splice(e.row.rowIndex, 0, clonedItem);
+                // e.component.refresh(true);
+                e.event.preventDefault();
+              },
+            }],
+          },
         { 
             dataField: "site",
             caption: "Site",
             width: 40,
+            sortOrder: 'asc',
+
             // visible: (role=="admin")?true:false,
             validationRules: [{ type: "required" }]
         },
         { 
             dataField: "subcontractor",
             caption: "Sub Contractor",
+            sortOrder: 'asc',
+
             // editorType: "dxSelectBox",
             // lookup: {
             //     dataSource: listKegiatan,  
@@ -86,6 +125,8 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
         { 
             dataField: "no_kap",
             caption: "no_kap",
+            sortOrder: 'asc',
+
             width: 150,
 
         },
@@ -397,6 +438,8 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
         })
     },
 }).dxDataGrid("instance");
+
+})
 
 function cellTemplate(container, options) {
   let imgElement = document.createElement("img");
