@@ -28,7 +28,7 @@
 			<div class="widget widget-stats bg-red">
 				<div class="stats-icon stats-icon-lg"><i class="fa fa-book"></i></div>
 				<div class="stats-content">
-					<div class="stats-number">Expired This Month</div>
+					<div class="stats-number">Expires This Month</div>
 					<div class="p-5" style="font-size: 15px; font-weight:bold;">Services : <span id="param2cat0">0</span> </div>
 					<div class="p-5" style="font-size: 15px; font-weight:bold;">Goods & Equipments : <span id="param2cat1">0</span> </div>
 					<div class="p-5" style="font-size: 15px; font-weight:bold;">Others : <span id="param2cat2">0</span> </div>
@@ -46,7 +46,7 @@
 			<div class="widget widget-stats bg-orange">
 				<div class="stats-icon stats-icon-lg"><i class="fa fa-book"></i></div>
 				<div class="stats-content">
-					<div class="stats-number">Expired Next Month</div>
+					<div class="stats-number">Expires Next Month</div>
 					<div class="p-5" style="font-size: 15px; font-weight:bold;">Services : <span id="param3cat0">0</span> </div>
 					<div class="p-5" style="font-size: 15px; font-weight:bold;">Goods & Equipments : <span id="param3cat1">0</span> </div>
 					<div class="p-5" style="font-size: 15px; font-weight:bold;">Others : <span id="param3cat2">0</span> </div>
