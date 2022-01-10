@@ -123,15 +123,15 @@ function detailsite(vparam){
                     },
                   columns: [
                       {
-                          dataField: "site".
+                          dataField: "site",
                           sortOrder: 'asc',
                       },
                       {
-                          dataField: "subcontractor".
+                          dataField: "subcontractor",
                           sortOrder: 'asc',
                       },
                       {
-                          dataField: "no_kap".
+                          dataField: "no_kap",
                           sortOrder: 'asc',
                       },
 //                         'site',
