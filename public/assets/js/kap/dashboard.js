@@ -118,9 +118,24 @@ function detailsite(vparam){
                         visible: true,
                         showInfo: true,
                     },
+                    sorting: {
+                      mode: 'multiple',
+                    },
                   columns: [
-                        'site',
-                        'subcontractor',
+                      {
+                          dataField: "site".
+                          sortOrder: 'asc',
+                      },
+                      {
+                          dataField: "subcontractor".
+                          sortOrder: 'asc',
+                      },
+                      {
+                          dataField: "no_kap".
+                          sortOrder: 'asc',
+                      },
+//                         'site',
+//                         'subcontractor',
                         // 'unit_no',
                         // 'type',
                         // 'description',
@@ -140,7 +155,7 @@ function detailsite(vparam){
                         // 'uom',
                         // 'remarks',
                         // 'status',
-                        'no_kap',
+//                         'no_kap',
                         // 'category',
                     ],
                   export : {
@@ -162,6 +177,9 @@ function detailsite(vparam){
                           columnAutoWidth: true,
                           showBorders: true,
                           rowAlternationEnabled: true,
+                          sorting: {
+                              mode: 'multiple',
+                            },
                           dataSource: new DevExpress.data.DataSource({
                               store: new DevExpress.data.CustomStore({
                                   key: 'no_kap',
@@ -176,14 +194,17 @@ function detailsite(vparam){
                                 { 
                                     dataField: "site",
                                     caption: "Site",
+                                    sortOrder: 'asc',
                                 },
                                 { 
                                     dataField: "subcontractor",
                                     caption: "Sub Contractor",
+                                    sortOrder: 'asc',
                                 },
                                 { 
                                     dataField: "no_kap",
                                     caption: "no_kap",
+                                    sortOrder: 'asc',
                                     // width: 150,
                         
                                 },
