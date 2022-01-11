@@ -61,7 +61,7 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
     },
     editing: {
         useIcons:true,
-        mode: "row",
+        mode: "cell",
         allowAdding: (role == "admin")?true:false,
         allowUpdating: (role == "admin")?true:false,
         allowDeleting: (role == "admin")?true:false,
