@@ -92,7 +92,8 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
               },
               onClick(e) {
                 const clonedItem = $.extend({}, e.row.data, { id: maxID += 1 });
-                // console.log(maxID);
+                // console.log(clonedItem);
+                  sendRequest(apiurl + "/equipment", "POST", clonedItem);
     
                 equipment.splice(e.row.rowIndex, 0, clonedItem);
                 // e.component.refresh(true);
