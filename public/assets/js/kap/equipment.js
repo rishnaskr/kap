@@ -34,7 +34,7 @@ $.getJSON('/api/equipment',function(items){
     let maxID = items.data.length;
     let equipment = items.data;
     
-    // console.log(itemdata.length)
+    console.log(maxID)
     // maxID =  [];
     // $.each(items.data,function(x,y){
     //     let maxID = y.id;
@@ -93,10 +93,10 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
               onClick(e) {
                 const clonedItem = $.extend({}, e.row.data, { id: maxID += 1 });
                 // console.log(clonedItem);
-                  sendRequest(apiurl + "/equipment", "POST", clonedItem);
+                sendRequest(apiurl + "/equipment", "POST", clonedItem);
     
                 equipment.splice(e.row.rowIndex, 0, clonedItem);
-                // e.component.refresh(true);
+                e.component.refresh(true);
                 e.event.preventDefault();
               },
             }],
