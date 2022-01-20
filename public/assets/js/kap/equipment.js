@@ -169,7 +169,7 @@ var dataGrid = $("#grid-equipment").dxDataGrid({
         },
         { 
             dataField: "amount",
-            caption: "amount",
+            caption: "rate",
             dataType: "number",
             format: "fixedPoint",
             editorOptions: {
