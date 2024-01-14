@@ -15,7 +15,7 @@
 		<!-- begin brand -->
 		<div class="login-header">
 			<div class="brand">
-				<span class="fa fa-lock"></span> <b>KAP</b> MONITORING
+				<span class="fa fa-lock"></span> MONITORING Kerjaan Riris
 				<small>PT. Darma Henwa</small>
 			</div>
 			{{-- <div class="icon">
